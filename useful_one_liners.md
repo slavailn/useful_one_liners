@@ -17,3 +17,10 @@ samtools view -F 0x904 -c <bam>
 
 ```
 
+Calculate genome coverage with bedtools, output as bedgraph, ignore bases with 0 coverage
+
+```
+
+bedtools genomecov -ibam <sorted.bam> -bg > <bedgraph>
+
+```
