@@ -24,3 +24,18 @@ Calculate genome coverage with bedtools, output as bedgraph, ignore bases with 0
 bedtools genomecov -ibam <sorted.bam> -bg > <bedgraph>
 
 ```
+
+Dowload data from SRA archive
+
+```
+
+# Search for a certain project PRJNA* and get run info file
+esearch -db sra -query PRJNA560453 | efetch -format runinfo > info.csv
+# get SRR ids from run info file and save them in ids.txt file
+# Prefetch read files, otherwise the download will be really slow
+cat ids.txt | xargs -n 1 prefetch $1
+# Download SRA files, convert to fastq and split into paired-end files
+cat ids.txt | xargs -n 1 fastq-dump $1 --split-files
+
+
+```
