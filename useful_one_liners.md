@@ -37,7 +37,12 @@ cat ids.txt | xargs -n 1 prefetch $1
 # Download SRA files, convert to fastq and split into paired-end files
 cat ids.txt | xargs -n 1 fastq-dump $1 --split-files
 
+```
+
 # Find the column index of the text file in bash
+
+```
+
 head -n 1 <file_name> | tr '\t' '\n' | cat -n | grep <matching_pattern>
 
 
