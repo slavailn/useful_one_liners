@@ -39,11 +39,17 @@ cat ids.txt | xargs -n 1 fastq-dump $1 --split-files
 
 ```
 
-# Find the column index of the text file in bash
+### Find the column index of the text file in bash
 
 ```
 
 head -n 1 <file_name> | tr '\t' '\n' | cat -n | grep <matching_pattern>
 
+```
+### Print all lines till the end of the file after the matching pattern
 
 ```
+sed -n '/<pattern>/,$p' <filename>
+```
+
+
