@@ -51,5 +51,9 @@ head -n 1 <file_name> | tr '\t' '\n' | cat -n | grep <matching_pattern>
 ```
 sed -n '/<pattern>/,$p' <filename>
 ```
+### Unzip multiple *.gz* files in parallel:
 
+```
+parallel -j 46 "gunzip {}" ::: *.fastq.gz
+```
 
