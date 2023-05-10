@@ -62,7 +62,11 @@ awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l,
 lengths[l]}}' adaptor-trimmed_inputfile.fastq
 ```
 
+### Convert uppercase fasta to lowercase while ignoring ids
 
+```
+cat mirna_mm10.fasta | sed -r '/^[ACTG]/s/[A-Z]+/\^C0/g'
+```
 
 
 
