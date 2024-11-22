@@ -67,6 +67,10 @@ lengths[l]}}' adaptor-trimmed_inputfile.fastq
 ```
 cat mirna_mm10.fasta | sed -r '/^[ACTG]/s/[A-Z]+/\^C0/g'
 ```
+### Use trim_galore and parallel to trim multiple fastq pairs
 
+```
+find  path_to_fastq  -name "*_R1_001.fastq.gz" | parallel -j 1 trim_galore --paired --fastqc -o trim_galore/ {} {= s/_R1_/_R2_/ =}
+```
 
 
