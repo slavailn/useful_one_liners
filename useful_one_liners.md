@@ -72,5 +72,8 @@ cat mirna_mm10.fasta | sed -r '/^[ACTG]/s/[A-Z]+/\^C0/g'
 ```
 find  path_to_fastq  -name "*_R1_001.fastq.gz" | parallel -j 1 trim_galore --paired --fastqc -o trim_galore/ {} {= s/_R1_/_R2_/ =}
 ```
+### Generate length distribution of reads based on a fastq file
+#### From: https://www.biostars.org/p/72433/#72439
+awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' file.fastq
 
 
