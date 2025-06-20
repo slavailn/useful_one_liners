@@ -79,3 +79,14 @@ find  path_to_fastq  -name "*_R1_001.fastq.gz" | parallel -j 1 trim_galore --pai
 awk 'NR%4 == 2 {lengths[length($0)]++} END {for (l in lengths) {print l, lengths[l]}}' file.fastq
 ```
 
+### Extract all reads where both reads are unmapped
+#### From: https://stackoverflow.com/questions/63157073/extracting-unmapped-reads-where-both-mates-are-unmapped-using-samtools
+```
+samtools view -@ 10 -b -f 12 <input.bam> > <both_unmapped.bam>
+
+```
+Explanation: f 12 -> f 4 (read unmapped) + f 8 (mate unmapped)
+
+
+
+
