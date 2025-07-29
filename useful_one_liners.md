@@ -87,6 +87,18 @@ samtools view -@ 10 -b -f 12 <input.bam> > <both_unmapped.bam>
 ```
 Explanation: f 12 -> f 4 (read unmapped) + f 8 (mate unmapped)
 
+## One-step “extract&nbsp;&amp;&nbsp;purge” with GNU Parallel
 
+Run the command below from the parent directory that contains your sample folders (`f110/`, `f111/`, …).  
+It will:
+
+1. **find** every ZIP file directly inside each sample folder,  
+2. **unzip** its contents into the same folder, and  
+3. **delete** the archive *only if* extraction succeeds.
+
+```bash
+find f*/ -maxdepth 1 -type f -iname '*.zip' -print0 |
+  parallel -0 -P "$(nproc)" --bar \
+          'unzip -q -n -j -d "{//}" "{}" && rm "{}"'
 
 
